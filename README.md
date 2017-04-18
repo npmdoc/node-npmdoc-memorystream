@@ -1,4 +1,7 @@
-# api documentation for  [memorystream (v0.3.1)](https://github.com/JSBizon/node-memorystream)  [![npm package](https://img.shields.io/npm/v/npmdoc-memorystream.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-memorystream) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-memorystream.svg)](https://travis-ci.org/npmdoc/node-npmdoc-memorystream)
+# npmdoc-memorystream
+
+#### api documentation for  [memorystream (v0.3.1)](https://github.com/JSBizon/node-memorystream)  [![npm package](https://img.shields.io/npm/v/npmdoc-memorystream.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-memorystream) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-memorystream.svg)](https://travis-ci.org/npmdoc/node-npmdoc-memorystream)
+
 #### This is lightweight memory stream module for node.js.
 
 [![NPM](https://nodei.co/npm/memorystream.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/memorystream)
