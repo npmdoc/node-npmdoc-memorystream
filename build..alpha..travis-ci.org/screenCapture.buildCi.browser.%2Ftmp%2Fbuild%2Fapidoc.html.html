@@ -65,15 +65,6 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.memorystream.Gruntfile">
-            function <span class="apidocSignatureSpan">memorystream.</span>Gruntfile
-            <span class="apidocSignatureSpan">(grunt)</span>
-            </a>
-
-        </li>
-
-        <li>
-
             <a class="apidocElementLiA" href="#apidoc.element.memorystream.createReadStream">
             function <span class="apidocSignatureSpan">memorystream.</span>createReadStream
             <span class="apidocSignatureSpan">(data, options)</span>
@@ -92,34 +83,8 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.memorystream.toString">
-            function <span class="apidocSignatureSpan">memorystream.</span>toString
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.memorystream.Gruntfile">module memorystream.Gruntfile</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.memorystream.Gruntfile.Gruntfile">
-            function <span class="apidocSignatureSpan">memorystream.</span>Gruntfile
-            <span class="apidocSignatureSpan">(grunt)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.memorystream.createReadStream">module memorystream.createReadStream</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.memorystream.createReadStream.createReadStream">
-            function <span class="apidocSignatureSpan">memorystream.</span>createReadStream
+            <a class="apidocElementLiA" href="#apidoc.element.memorystream.index">
+            function <span class="apidocSignatureSpan">memorystream.</span>index
             <span class="apidocSignatureSpan">(data, options)</span>
             </a>
 
@@ -127,26 +92,31 @@
 
     </ol></li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.memorystream.createWriteStream">module memorystream.createWriteStream</a><ol>
+    <li class="apidocModuleLi"><a href="#apidoc.module.memorystream.index">module memorystream.index</a><ol>
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.memorystream.createWriteStream.createWriteStream">
-            function <span class="apidocSignatureSpan">memorystream.</span>createWriteStream
+            <a class="apidocElementLiA" href="#apidoc.element.memorystream.index.index">
+            function <span class="apidocSignatureSpan">memorystream.</span>index
             <span class="apidocSignatureSpan">(data, options)</span>
             </a>
 
         </li>
 
-    </ol></li>
+        <li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.memorystream.toString">module memorystream.toString</a><ol>
+            <a class="apidocElementLiA" href="#apidoc.element.memorystream.index.createReadStream">
+            function <span class="apidocSignatureSpan">memorystream.index.</span>createReadStream
+            <span class="apidocSignatureSpan">(data, options)</span>
+            </a>
+
+        </li>
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.memorystream.toString.toString">
-            function <span class="apidocSignatureSpan">memorystream.</span>toString
-            <span class="apidocSignatureSpan">()</span>
+            <a class="apidocElementLiA" href="#apidoc.element.memorystream.index.createWriteStream">
+            function <span class="apidocSignatureSpan">memorystream.index.</span>createWriteStream
+            <span class="apidocSignatureSpan">(data, options)</span>
             </a>
 
         </li>
@@ -191,41 +161,6 @@
 
 
     <h2>
-        <a href="#apidoc.element.memorystream.Gruntfile" id="apidoc.element.memorystream.Gruntfile">
-        function <span class="apidocSignatureSpan">memorystream.</span>Gruntfile
-        <span class="apidocSignatureSpan">(grunt)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">Gruntfile = function (grunt) {
-
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-mocha-test');
-
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        jshint: {
-            options: {
-              node: true
-            },
-            main : ["index.js"]
-        },
-        mochaTest: {
-            options: {
-                reporter: 'spec'
-            },
-            src: ['test/*.test.js']
-        }
-    });
-
-    grunt.registerTask('default', ['jshint:main', 'mochaTest']);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
         <a href="#apidoc.element.memorystream.createReadStream" id="apidoc.element.memorystream.createReadStream">
         function <span class="apidocSignatureSpan">memorystream.</span>createReadStream
         <span class="apidocSignatureSpan">(data, options)</span>
@@ -239,7 +174,23 @@
 
     return new MemoryStream(data, options);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+
+it('should create Readable stream', function () {
+    var memory_stream = new MemoryStream([], {writable : false});
+    expect(memory_stream).to.be.ok();
+    expect(memory_stream).to.be.a(STREAM.Readable);
+
+    memory_stream = MemoryStream.<span class="apidocCodeKeywordSpan">createReadStream</span>([]);
+    expect(memory_stream).to.be.a(STREAM.Readable);
+});
+
+it('should create Writable stream', function () {
+    var memory_stream = new MemoryStream([], {readable : false});
+    expect(memory_stream).to.be.ok();
+    expect(memory_stream).to.be.a(STREAM.Writable);
+...</pre></li>
     </ul>
 
 
@@ -258,76 +209,52 @@
 
     return new MemoryStream(data, options);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.memorystream.toString" id="apidoc.element.memorystream.toString">
-        function <span class="apidocSignatureSpan">memorystream.</span>toString
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">toString = function () {
-    return text;
-}</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-In this example I illustrate the basic I/O operations of the memory stream.
+});
 
-	var MemoryStream = require('memorystream');
-	var memStream = new MemoryStream(['Hello',' ']);
-	
-	var data = '';
-	memStream.on('data', function(chunk) {
-		data += chunk.<span class="apidocCodeKeywordSpan">toString</span>();
-	});
-	
-	memStream.write('World');
-	
-	memStream.on('end', function() {
-		// outputs 'Hello World!'
-		console.log(data);
+it('should create Writable stream', function () {
+    var memory_stream = new MemoryStream([], {readable : false});
+    expect(memory_stream).to.be.ok();
+    expect(memory_stream).to.be.a(STREAM.Writable);
+
+    memory_stream = MemoryStream.<span class="apidocCodeKeywordSpan">createWriteStream</span>([]);
+    expect(memory_stream).to.be.a(STREAM.Writable);
+});
+
+it('should create Duplex stream', function () {
+    var memory_stream = new MemoryStream([]);
+    expect(memory_stream).to.be.ok();
+    expect(memory_stream).to.be.a(STREAM.Duplex);
 ...</pre></li>
     </ul>
 
 
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.memorystream.Gruntfile" id="apidoc.module.memorystream.Gruntfile">module memorystream.Gruntfile</a></h1>
-
 
     <h2>
-        <a href="#apidoc.element.memorystream.Gruntfile.Gruntfile" id="apidoc.element.memorystream.Gruntfile.Gruntfile">
-        function <span class="apidocSignatureSpan">memorystream.</span>Gruntfile
-        <span class="apidocSignatureSpan">(grunt)</span>
+        <a href="#apidoc.element.memorystream.index" id="apidoc.element.memorystream.index">
+        function <span class="apidocSignatureSpan">memorystream.</span>index
+        <span class="apidocSignatureSpan">(data, options)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">Gruntfile = function (grunt) {
+    <li>description and source-code<pre class="apidocCodePre">function MemoryStream(data, options) {
+    if (!(this instanceof MemoryStream))
+        return new MemoryStream(data, options);
 
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-mocha-test');
+    options = options || {};
 
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        jshint: {
-            options: {
-              node: true
-            },
-            main : ["index.js"]
-        },
-        mochaTest: {
-            options: {
-                reporter: 'spec'
-            },
-            src: ['test/*.test.js']
-        }
-    });
+    var readable = options.hasOwnProperty('readable') ? options.readable : true,
+        writable = options.hasOwnProperty('writable') ? options.writable : true;
 
-    grunt.registerTask('default', ['jshint:main', 'mochaTest']);
+    if (readable &amp;&amp; writable) {
+        return new MemoryDuplexStream(data, options);
+    } else if (readable) {
+        return new MemoryReadableStream(data, options);
+    } else if (writable) {
+        return new MemoryWritableStream(data, options);
+    } else {
+        throw new Error("Unknown stream type  Readable, Writable or Duplex ");
+    }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -336,12 +263,43 @@ In this example I illustrate the basic I/O operations of the memory stream.
 </div>
 
 <div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.memorystream.createReadStream" id="apidoc.module.memorystream.createReadStream">module memorystream.createReadStream</a></h1>
+<h1><a href="#apidoc.module.memorystream.index" id="apidoc.module.memorystream.index">module memorystream.index</a></h1>
 
 
     <h2>
-        <a href="#apidoc.element.memorystream.createReadStream.createReadStream" id="apidoc.element.memorystream.createReadStream.createReadStream">
-        function <span class="apidocSignatureSpan">memorystream.</span>createReadStream
+        <a href="#apidoc.element.memorystream.index.index" id="apidoc.element.memorystream.index.index">
+        function <span class="apidocSignatureSpan">memorystream.</span>index
+        <span class="apidocSignatureSpan">(data, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function MemoryStream(data, options) {
+    if (!(this instanceof MemoryStream))
+        return new MemoryStream(data, options);
+
+    options = options || {};
+
+    var readable = options.hasOwnProperty('readable') ? options.readable : true,
+        writable = options.hasOwnProperty('writable') ? options.writable : true;
+
+    if (readable &amp;&amp; writable) {
+        return new MemoryDuplexStream(data, options);
+    } else if (readable) {
+        return new MemoryReadableStream(data, options);
+    } else if (writable) {
+        return new MemoryWritableStream(data, options);
+    } else {
+        throw new Error("Unknown stream type  Readable, Writable or Duplex ");
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.memorystream.index.createReadStream" id="apidoc.element.memorystream.index.createReadStream">
+        function <span class="apidocSignatureSpan">memorystream.index.</span>createReadStream
         <span class="apidocSignatureSpan">(data, options)</span>
         </a>
     </h2>
@@ -353,19 +311,30 @@ In this example I illustrate the basic I/O operations of the memory stream.
 
     return new MemoryStream(data, options);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+
+it('should create Readable stream', function () {
+    var memory_stream = new MemoryStream([], {writable : false});
+    expect(memory_stream).to.be.ok();
+    expect(memory_stream).to.be.a(STREAM.Readable);
+
+    memory_stream = MemoryStream.<span class="apidocCodeKeywordSpan">createReadStream</span>([]);
+    expect(memory_stream).to.be.a(STREAM.Readable);
+});
+
+it('should create Writable stream', function () {
+    var memory_stream = new MemoryStream([], {readable : false});
+    expect(memory_stream).to.be.ok();
+    expect(memory_stream).to.be.a(STREAM.Writable);
+...</pre></li>
     </ul>
 
 
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.memorystream.createWriteStream" id="apidoc.module.memorystream.createWriteStream">module memorystream.createWriteStream</a></h1>
-
 
     <h2>
-        <a href="#apidoc.element.memorystream.createWriteStream.createWriteStream" id="apidoc.element.memorystream.createWriteStream.createWriteStream">
-        function <span class="apidocSignatureSpan">memorystream.</span>createWriteStream
+        <a href="#apidoc.element.memorystream.index.createWriteStream" id="apidoc.element.memorystream.index.createWriteStream">
+        function <span class="apidocSignatureSpan">memorystream.index.</span>createWriteStream
         <span class="apidocSignatureSpan">(data, options)</span>
         </a>
     </h2>
@@ -377,40 +346,22 @@ In this example I illustrate the basic I/O operations of the memory stream.
 
     return new MemoryStream(data, options);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.memorystream.toString" id="apidoc.module.memorystream.toString">module memorystream.toString</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.memorystream.toString.toString" id="apidoc.element.memorystream.toString.toString">
-        function <span class="apidocSignatureSpan">memorystream.</span>toString
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function toString() { [native code] }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-In this example I illustrate the basic I/O operations of the memory stream.
+});
 
-	var MemoryStream = require('memorystream');
-	var memStream = new MemoryStream(['Hello',' ']);
-	
-	var data = '';
-	memStream.on('data', function(chunk) {
-		data += chunk.<span class="apidocCodeKeywordSpan">toString</span>();
-	});
-	
-	memStream.write('World');
-	
-	memStream.on('end', function() {
-		// outputs 'Hello World!'
-		console.log(data);
+it('should create Writable stream', function () {
+    var memory_stream = new MemoryStream([], {readable : false});
+    expect(memory_stream).to.be.ok();
+    expect(memory_stream).to.be.a(STREAM.Writable);
+
+    memory_stream = MemoryStream.<span class="apidocCodeKeywordSpan">createWriteStream</span>([]);
+    expect(memory_stream).to.be.a(STREAM.Writable);
+});
+
+it('should create Duplex stream', function () {
+    var memory_stream = new MemoryStream([]);
+    expect(memory_stream).to.be.ok();
+    expect(memory_stream).to.be.a(STREAM.Duplex);
 ...</pre></li>
     </ul>
 
